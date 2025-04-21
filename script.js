@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
     const incorrectCount = Object.keys(correctAnswers).filter(key => {
       const correct = correctAnswers[key];
-      const submitted = form.elements[key];
+      const submitted = form.querySelector(`[name='${key}']:checked`) || form.querySelector(`[name='${key}[]']:checked`)
       if (!submitted) return false;
       if (Array.isArray(correct)) {
         const selected = [...form.querySelectorAll(`[name='${key}']:checked`)].map(x => x.value);
@@ -152,7 +152,7 @@ function finishInterfaceQuiz() {
     
     const incorrectCount = Object.keys(correctAnswers).filter(key => {
       const correct = correctAnswers[key];
-      const submitted = form.elements[key];
+      const submitted = form.querySelector(`[name='${key}']:checked`) || form.querySelector(`[name='${key}[]']:checked`)
       if (!submitted) return false;
       if (Array.isArray(correct)) {
         const selected = [...form.querySelectorAll(`[name='${key}']:checked`)].map(x => x.value);
@@ -225,7 +225,7 @@ function finishInterfaceQuiz() {
     
     const incorrectCount = Object.keys(correctAnswers).filter(key => {
       const correct = correctAnswers[key];
-      const submitted = form.elements[key];
+      const submitted = form.querySelector(`[name='${key}']:checked`) || form.querySelector(`[name='${key}[]']:checked`)
       if (!submitted) return false;
       if (Array.isArray(correct)) {
         const selected = [...form.querySelectorAll(`[name='${key}']:checked`)].map(x => x.value);
