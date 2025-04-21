@@ -15,7 +15,29 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       exportResults('Interface Quiz', mpicForm);
       setTimeout(() => {
-        window.location.href = 'motion.html';
+        
+    const incorrectCount = Object.keys(correctAnswers).filter(key => {
+      const correct = correctAnswers[key];
+      const submitted = form.elements[key];
+      if (!submitted) return false;
+      if (Array.isArray(correct)) {
+        const selected = [...form.querySelectorAll(`[name='${key}']:checked`)].map(x => x.value);
+        return selected.sort().toString() !== correct.sort().toString();
+      } else {
+        return submitted.value !== correct;
+      }
+    }).length;
+
+    if (incorrectCount > 0) {
+      alert('You have some incorrect answers. Please review and correct them before continuing.');
+      return;
+    }
+
+    
+    localStorage.setItem('interfaceUnlocked', 'true');
+    window.location.href = 'motion.html';
+    
+    
       }, 1000);
     });
   }
@@ -90,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.setItem('lastScore', result.score);
     localStorage.setItem('lastTotal', result.total);
     showFeedback(form, correctAnswers);
-    exportResults("Motion Quiz", form);
+    
     setTimeout(() => {
       window.location.href = 'results.html';
     }, 3000);
@@ -125,9 +147,31 @@ function finishInterfaceQuiz() {
   localStorage.setItem('lastScore', score);
   localStorage.setItem('lastTotal', total);
   showFeedback(form, correctAnswers);
-  exportResults("Interface Quiz", form);
+  
   setTimeout(() => {
+    
+    const incorrectCount = Object.keys(correctAnswers).filter(key => {
+      const correct = correctAnswers[key];
+      const submitted = form.elements[key];
+      if (!submitted) return false;
+      if (Array.isArray(correct)) {
+        const selected = [...form.querySelectorAll(`[name='${key}']:checked`)].map(x => x.value);
+        return selected.sort().toString() !== correct.sort().toString();
+      } else {
+        return submitted.value !== correct;
+      }
+    }).length;
+
+    if (incorrectCount > 0) {
+      alert('You have some incorrect answers. Please review and correct them before continuing.');
+      return;
+    }
+
+    
+    localStorage.setItem('interfaceUnlocked', 'true');
     window.location.href = 'motion.html';
+    
+    
   }, 3000);
 }
 
@@ -142,7 +186,7 @@ function finishQuiz() {
   localStorage.setItem('motionScore', result.score);
   localStorage.setItem('motionTotal', result.total);
   showFeedback(form, correctAnswers);
-  exportResults("Motion Quiz", form);
+  
   setTimeout(() => {
     window.location.href = 'summary.html';
   }, 3000);
@@ -176,8 +220,30 @@ function finishInterfaceQuiz() {
   localStorage.setItem('interfaceScore', score);
   localStorage.setItem('interfaceTotal', total);
   showFeedback(form, correctAnswers);
-  exportResults("Interface Quiz", form);
+  
   setTimeout(() => {
+    
+    const incorrectCount = Object.keys(correctAnswers).filter(key => {
+      const correct = correctAnswers[key];
+      const submitted = form.elements[key];
+      if (!submitted) return false;
+      if (Array.isArray(correct)) {
+        const selected = [...form.querySelectorAll(`[name='${key}']:checked`)].map(x => x.value);
+        return selected.sort().toString() !== correct.sort().toString();
+      } else {
+        return submitted.value !== correct;
+      }
+    }).length;
+
+    if (incorrectCount > 0) {
+      alert('You have some incorrect answers. Please review and correct them before continuing.');
+      return;
+    }
+
+    
+    localStorage.setItem('interfaceUnlocked', 'true');
     window.location.href = 'motion.html';
+    
+    
   }, 3000);
 }
