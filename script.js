@@ -96,3 +96,88 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 3000);
   };
 });
+
+function finishInterfaceQuiz() {
+  const form = document.getElementById("mpic-quiz");
+  const correctAnswers = {
+    'q1': '0', 'q2': '0', 'q3': '1', 'q4': '1', 'q5': '0',
+    'q6': '0', 'q7': '2', 'q8': '0', 'q9': '1', 'q10': '2',
+    'q11': '3', 'q12': ['0','1','2','3','4']
+  };
+
+  let score = 0;
+  let total = 0;
+  const formData = new FormData(form);
+  for (const [name, value] of formData.entries()) {
+    if (name in correctAnswers) {
+      total++;
+      const correct = correctAnswers[name];
+      if (Array.isArray(correct)) {
+        if (formData.getAll(name).sort().toString() === correct.sort().toString()) {
+          score++;
+        }
+      } else if (value === correct) {
+        score++;
+      }
+    }
+  }
+
+  localStorage.setItem('lastScore', score);
+  localStorage.setItem('lastTotal', total);
+  showFeedback(form, correctAnswers);
+  exportResults("Interface Quiz", form);
+  setTimeout(() => {
+    window.location.href = 'motion.html';
+  }, 3000);
+}
+
+function finishQuiz() {
+  const form = document.getElementById("motion-quiz");
+  const correctAnswers = {
+    'm1': 'c', 'm2': 'c', 'm4': 'true', 'm5': 'c', 'm6': 'b',
+    'm7': 'b', 'm8': 'true', 'm9': 'b', 'm10': 'c', 'm11': 'b',
+    'm12': 'b', 'm13': 'true', 'm14': 'b', 'm15': 'b', 'm16': 'b'
+  };
+  const result = calculateScore(form);
+  localStorage.setItem('motionScore', result.score);
+  localStorage.setItem('motionTotal', result.total);
+  showFeedback(form, correctAnswers);
+  exportResults("Motion Quiz", form);
+  setTimeout(() => {
+    window.location.href = 'summary.html';
+  }, 3000);
+}
+
+function finishInterfaceQuiz() {
+  const form = document.getElementById("mpic-quiz");
+  const correctAnswers = {
+    'q1': '0', 'q2': '0', 'q3': '1', 'q4': '1', 'q5': '0',
+    'q6': '0', 'q7': '2', 'q8': '0', 'q9': '1', 'q10': '2',
+    'q11': '3', 'q12': ['0','1','2','3','4']
+  };
+
+  let score = 0;
+  let total = 0;
+  const formData = new FormData(form);
+  for (const [name, value] of formData.entries()) {
+    if (name in correctAnswers) {
+      total++;
+      const correct = correctAnswers[name];
+      if (Array.isArray(correct)) {
+        if (formData.getAll(name).sort().toString() === correct.sort().toString()) {
+          score++;
+        }
+      } else if (value === correct) {
+        score++;
+      }
+    }
+  }
+
+  localStorage.setItem('interfaceScore', score);
+  localStorage.setItem('interfaceTotal', total);
+  showFeedback(form, correctAnswers);
+  exportResults("Interface Quiz", form);
+  setTimeout(() => {
+    window.location.href = 'motion.html';
+  }, 3000);
+}
