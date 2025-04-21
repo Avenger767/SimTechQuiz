@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }).length;
 
     if (incorrectCount > 0) {
-      alert('You have some incorrect answers. Please review and correct them before continuing.');
+      alert('Incorrect answers detected. Restarting Interface Quiz...'); window.location.href = 'mpic.html';
       return;
     }
 
@@ -163,7 +163,7 @@ function finishInterfaceQuiz() {
     }).length;
 
     if (incorrectCount > 0) {
-      alert('You have some incorrect answers. Please review and correct them before continuing.');
+      alert('Incorrect answers detected. Restarting Interface Quiz...'); window.location.href = 'mpic.html';
       return;
     }
 
@@ -236,7 +236,7 @@ function finishInterfaceQuiz() {
     }).length;
 
     if (incorrectCount > 0) {
-      alert('You have some incorrect answers. Please review and correct them before continuing.');
+      alert('Incorrect answers detected. Restarting Interface Quiz...'); window.location.href = 'mpic.html';
       return;
     }
 
